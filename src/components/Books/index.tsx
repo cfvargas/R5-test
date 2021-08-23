@@ -1,12 +1,17 @@
 import React from 'react'
-import Book , { BookProps }from '../Book'
+import Book , { BookType }from '../Book'
+import './books.css'
 
 export interface BooksProps {
-  books: BookProps[]
+  books: BookType[]
 }
 
 const Books = ({ books }: BooksProps) => {
-  return books.map(book => <Book title={book.title} image={book.image} />) 
+  return (
+    <div className="books">
+      {books.map(book => <Book key={book.id} book={book} />)} 
+    </div>
+  )
 }
 
 export default Books

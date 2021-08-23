@@ -1,10 +1,15 @@
-import React from 'react'
+import React, {ChangeEvent} from 'react'
 import axios from 'axios'
+import './SearchInput.css'
 
-const SearchInput = ({setResponse}) => {
+interface SearchInputProps {
+  setResponse: Function
+}
+
+const SearchInput = ({setResponse}: SearchInputProps) => {
   const [searchValue, setSearchValue] = React.useState('')
 
-  function handleInputChange(event) {
+  function handleInputChange(event: ChangeEvent<HTMLInputElement>) {
     setSearchValue(event.target.value)
   }
 
@@ -18,14 +23,16 @@ const SearchInput = ({setResponse}) => {
   }, [])
 
   return (
-    <div>
+    <div className="search">
+      <h1>GOOGLE BOOKS</h1>
       <input
+	className="search-input"
 	type="text"
-	placeholder="Buscar..."
+	placeholder="Buscar un libro"
 	value={searchValue}
 	onChange={handleInputChange}
       />
-      <button onClick={() => getBooks(searchValue)}>Buscar</button>
+      <button className="search-button" onClick={() => getBooks(searchValue)}>Buscar</button>
     </div>
   )
 }

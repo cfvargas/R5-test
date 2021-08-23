@@ -13,11 +13,10 @@ const book = {
       "smallThumbnail": "http://books.google.com/books/content?id=SqikDwAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
       "thumbnail": "http://books.google.com/books/content?id=SqikDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
     },
-    description: "JavaScript es el lenguaje de programación más utilizado hoy. Junto a HTML y CSS, le da vida a la gran mayoría de los sitios Web que visitamos. Pero JavaScript ya no es exclusivo de la Web: proyectos como NodeJS, Electron y React Native lo llevaron al ámbito de los servidores, los programas de escritorio y las aplicaciones móviles. Además, cada día surgen nuevos frameworks (como los líderes y archienemigos React y Angular) para expandir las posibilidades de JavaScript. Esta guía introductoria, nos llevará en un viaje vertiginoso desde el primer \"Hola Mundo\" hasta aplicaciones que nos hablan y acceden a bases de datos. Obviamente, este no pretende ser un curso comprehensivo, sino un punto de partida para que el lector comience a programar en este excitante lenguaje.",
   }
 }
 
-test('SearchInput: Should get books when is mounted' ,async () => {
+test('SearchInput: Should get books when SearchInput is mounted' ,async () => {
   const setResponse = jest.fn()
   const books = {items: [book]}
   const response = {data: books}
@@ -31,7 +30,7 @@ test('SearchInput: Should get books when is mounted' ,async () => {
 })
 
 
-test('SearchInput: Should get books when submit', async () => {
+test('SearchInput: Should get books when click on Buscar', async () => {
   const setResponse = jest.fn()
   const books = {items: [book]}
   const response = {data: books}
@@ -42,7 +41,7 @@ test('SearchInput: Should get books when submit', async () => {
     expect(setResponse).toBeCalledWith(response)
   })
 
-  fireEvent.change(screen.getByPlaceholderText('Buscar...'),
+  fireEvent.change(screen.getByPlaceholderText(/Buscar/i),
     { target: { value: 'javascript' } }
   )
 
